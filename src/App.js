@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Navbar from './hub/Navbar'
+import Bisection from './unit1/Bisection';
+import False_Position from './unit1/False_Position'
+import One_Point_interation from './unit1/One_Point_interation'
+import Taylor_Series from './unit1/Taylor_Series'
+import Newton_Raphson from './unit1/Newton_Raphson'
+import Secant from './unit1/Secant'
+import { BrowserRouter,Route } from 'react-router-dom';
+import Head from './Head';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+      <BrowserRouter>
+      <Head/>
+      <main>
+      <Bisection/>
+      <False_Position/>
+      <One_Point_interation/>
+      <Taylor_Series/>
+      <Newton_Raphson/>
+      <Secant/>
+      </main>
+      </BrowserRouter>
+  
   );
 }
 
