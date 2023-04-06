@@ -3,31 +3,18 @@ import { useState } from 'react';
 const math = require('mathjs');
 const Carmer=()=>{
 
+    let numgen = 0;
+    const [table, setTable] = useState();
+    const giventable = [];
+    const [Matrix,setMatrix]=useState([])
+
     const print=()=>{
         return(<div></div>)
     }
-
-    const getMatrix=(row,column)=>{
-        let inputMattix=[];
-        for(var i=0;i<row;i++){
-            for(var j=0;j<column;j++){
-                inputMattix.push(
-                    <div>
-                        <input placeholder={"value x" + (i + 1)} />
-                    </div>
-                )
-            }
-        }
-     return(      
-            <div>hello</div>
-        )
-        
-    }
-
-    function copyMatrix(matrix) {
+    const copyMatrix=(matrix)=>{
         return matrix.map(row => row.slice());
     }
-
+    
     const cal_carmer=(A,B)=>{
         var A=[[1,0,1],
               [2,1,0],
@@ -46,38 +33,78 @@ const Carmer=()=>{
         console.log(x)
     }
 
-    const [Row,setRow] = useState(0)
-    const [Column,setColumn] = useState(0)
-    const [html,setHTML]=useState(null)
+    const createtable = (numgen) => {
+      let tableA = [];
+      let tableB = [];
+      let index=0;
+      for (let i = 0; i < numgen; i++) {
+        for(let j=0; j<numgen; j++){
+            tableA.push(
+                <input type="number" onChange={(event) => inputMatrix(event, index)}/>
+            )
+            index++
+        }
+        tableA.push(<br/>)
+        tableB.push(
+            <div><input type="number" /></div>
+        )
+      }
 
-    const inputRow = (event)=>{
+      giventable.push({ a: tableA, b: tableB });
+    };
+
+    const result = () => {
+        console.log("numgen: ", numgen);
+        console.log(giventable);
+        return (
+          <div>
+          <div>
+            <p>A=</p>
+            {giventable.map((data) => (
+              <div style={{ display: "flex" }}>
+                <div>{data.a}</div>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <br></br>
+            <p>B=</p>
+            {giventable.map((data)=>(
+              <div style={{ display: "flex" }}>
+                <div>{data.b}</div>
+                <br/>
+                
+              </div>
+            ))}
+          </div>
+          </div>
+        );
+      };
+
+    const inputNum=(event)=>{
         console.log(event.target.value)
-        setRow(event.target.value)
-        setHTML(getMatrix(Row,Column))
+        numgen=event.target.value
+        createtable(numgen)
+        setTable(result())
     }
 
-    const inputColumn=(event)=>{
+    const inputMatrix=(event,index)=>{
         console.log(event.target.value)
-        setColumn(event.target.value)
-        setHTML(getMatrix(Row,Column))
+        console.log()
     }
-
     return(
         <Container>
             <br></br>
             <br></br>
             <h1>Carmer Rule</h1>
-                
-            <Form>
-             <Form.Group className="mb-3" style={{display:"flex"}}>
-                <Form.Label style={{paddingTop:"5px"}}><strong>A</strong></Form.Label>
-                <input type="number" onChange={inputRow} style={{width:"6%"}} className="form-control"></input>
-                <input type="number" onChange={inputColumn} style={{width:"6%"}} className="form-control"></input>
-                </Form.Group>
-            </Form>  
+            <div class="input-group">
+                <span class="input-group-text">Dimension</span>
+                <input type="number"  class="form-control" onChange={inputNum}></input>
+            </div>
 
             <Container>
-                {html}
+                {table}
             </Container>
 
         </Container>

@@ -6,9 +6,11 @@ import One_Point_interation from './unit1/One_Point_interation'
 import Taylor_Series from './unit1/Taylor_Series'
 import Newton_Raphson from './unit1/Newton_Raphson'
 import Secant from './unit1/Secant'
-import Carmer from './unit2/Carmer'
+import CarmerRule from './unit2/CramerRule'
 import Test from './unit2/Test'
-import { BrowserRouter,NavLink, Route, Routes } from 'react-router-dom';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';;
+
 function App() {
   return (
   <BrowserRouter>
@@ -20,7 +22,7 @@ function App() {
     <Route path='/Taylor_Series' element={<Taylor_Series/>}/>
     <Route path='/Newton_Raphson' element={<Newton_Raphson/>}/>
     <Route path='/Secant' element={<Secant/>}/>
-    <Route path='/Carmer' element={<Carmer/>}/>
+    <Route path='/CarmerRule' element={<CarmerRule/>}/>
     <Route path='/Test' element={<Test/>}/>
   </Routes>
   </BrowserRouter>

@@ -12,17 +12,22 @@ const Navbar =()=> {
     <div className="navbar-nav">
       
         <NavDropdown title="Root of Equation" id="nav-dropdown" fontSize="30">
-          <div><NavLink to="/" >Bisection</NavLink></div>
-          <div><NavLink to="/False_Position">False Position</NavLink></div>
-          <div><NavLink to="/One_Point_interation">One Point interation</NavLink></div>
-          <div><NavLink to="/Taylor_Series">Taylor Series</NavLink></div>
-          <div><NavLink to="/Newton_Raphson">Newton Raphson</NavLink></div>
-          <div><NavLink to="/Secant">Secant Method</NavLink></div>
+          <ul>
+          <li><NavLink to="/" >Bisection</NavLink></li>
+          <li><NavLink to="/False_Position">False Position</NavLink></li>
+          <li><NavLink to="/One_Point_interation">One Point interation</NavLink></li>
+          <li><NavLink to="/Taylor_Series">Taylor Series</NavLink></li>
+          <li><NavLink to="/Newton_Raphson">Newton Raphson</NavLink></li>
+          <li><NavLink to="/Secant">Secant Method</NavLink></li>
+          </ul>
+          
         </NavDropdown>
 
         <NavDropdown title="Linear Algebra" id="nav-dropdown" fontSize="30">
-        <div><NavLink to="/Carmer">Carmer</NavLink></div>
-        <div><NavLink to="/Test">Test</NavLink></div>
+        <ul>
+        <li><NavLink to="/CarmerRule">CarmerRule</NavLink></li>
+        </ul>
+        
         </NavDropdown>
       
       </div>
