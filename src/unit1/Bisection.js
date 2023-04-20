@@ -2,6 +2,10 @@ import { useState } from "react"
 import { Button, Container, Form, Table} from "react-bootstrap";
 import { evaluate } from 'mathjs'
 import Plot from 'react-plotly.js';
+import axios from "axios";
+const apiURL= "http://localhost:5000/Bisection/3"
+var temp;
+
 
 const Bisection =()=>{
     const print = () =>{
@@ -130,6 +134,7 @@ const Bisection =()=>{
             type: 'scatter'
         };
         value.push(trace1,trace2,trace3)
+        
     }
     
     const data =[];
@@ -143,8 +148,8 @@ const Bisection =()=>{
     const [html, setHtml] = useState(null);
     const [Equation,setEquation] = useState("(x^4)-13")
     const [X,setX] = useState(0)
-    const [XL,setXL] = useState(0)
-    const [XR,setXR] = useState(0)
+    const [XL,setXL] = useState(-4)
+    const [XR,setXR] = useState(4)
 
     const inputEquation = (event) =>{
         console.log(event.target.value)
@@ -167,6 +172,21 @@ const Bisection =()=>{
         Calbisection(xlnum,xrnum);
         setHtml(print());
     }
+
+    const calAPI=()=>{
+        axios.get(apiURL)
+        .then(function(response){
+             console.log(response)
+             temp = response.data;
+             console.log(temp)
+             setEquation(temp[0].FX)
+             setXL(temp[0].XL)
+             setXR(temp[0].XR)
+            
+        })
+        
+    }
+
     return (
             <Container >
                 <br></br>
@@ -177,12 +197,16 @@ const Bisection =()=>{
                     <Form.Label style={{paddingTop:"5px"}}><strong>Input f(x)</strong></Form.Label>
                         <input type="text" id="equation" value={Equation} onChange={inputEquation} style={{width:"20%",marginLeft:"20px",marginRight:"60px"}} className="form-control"></input>
                         <Form.Label style={{paddingTop:"5px"}}><strong>Input XL</strong></Form.Label>
-                        <input type="number" id="XL" onChange={inputXL} style={{width:"20%",marginLeft:"20px",marginRight:"60px"}} className="form-control"></input>
+                        <input type="number" id="XL" onChange={inputXL} style={{width:"20%",marginLeft:"20px",marginRight:"60px"}} className="form-control" value={XL}></input>
                         <Form.Label style={{paddingTop:"5px"}}><strong>Input XR</strong></Form.Label>
-                        <input type="number" id="XR" onChange={inputXR} style={{width:"20%",marginLeft:"20px"}} className="form-control"></input>                      
+                        <input type="number" id="XR" onChange={inputXR} style={{width:"20%",marginLeft:"20px"}} className="form-control" value={XR}></input>                      
                     </Form.Group>
                     <Button variant="dark" onClick={calculateRoot}>
                         Calculate
+                    </Button> 
+
+                    <Button variant="dark" onClick={calAPI}>
+                        Example
                     </Button> 
                 </Form>
                 <br></br>

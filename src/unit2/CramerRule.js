@@ -2,40 +2,24 @@ import React, { useState } from "react";
 import {Table} from "react-bootstrap"
 
 const CramerRule = () => {
-  const [numVariables, setNumVariables] = useState(0);
+  const [N, setN] = useState(0);
   const [table, setTable] = useState();
-  const [xs, setXs] = useState([]);
-  const [ys, setYs] = useState([]);
 
-  const handleInputChangematrix = (event, row, col) => {
-    const value = event.target.value;
-    setXs(prevMatrix => {
-      const newMatrix = [...prevMatrix];
-      if (newMatrix[row]) {
-        newMatrix[row][col] = value;
-      } else {
-        newMatrix[row] = [];
-        newMatrix[row][col] = value;
-      }
-      return newMatrix;
-    });
-  }
-
-  const generateTable = (numVariables) => {
+  const generateTable = (N) => {
     const rows = [];
-    for (let i = 0; i < numVariables; i++) {
+    for (let i = 0; i < N; i++) {
       const cols = [];
-      for (let j = 0; j < numVariables; j++) {
+      for (let j = 0; j < N; j++) {
         cols.push(
           <td>
-            <input placeholder={`a${i + 1}${j + 1}`} onChange={(event)=>handleInputChangematrix(event,i,j)}/>
+            <input placeholder={`A${i + 1}${j + 1}`}/>
           </td>
         );
       }
       cols.push(<td>=</td>);
       cols.push(
         <td>
-          <input placeholder={`b${i + 1}`} onChange={(event)=>handleInputChangematrix(event,i)}/>
+          <input placeholder={`B${i + 1}`}/>
         </td>
       );
       rows.push(<tr>{cols}</tr>);
@@ -48,27 +32,24 @@ const CramerRule = () => {
     );
   };
 
-  const handleCalculate = () => {
-    // Add Cramer's rule algorithm here
-  };
 
-  const handleInputChange = (event) => {
-    const newNumVariables = parseInt(event.target.value);
-    console.log(newNumVariables)
-    setNumVariables(newNumVariables);
-    setTable(generateTable(newNumVariables));
+  const inputN = (event) => {
+    const newN = parseInt(event.target.value);
+    console.log(newN)
+    setN(newN);
+    setTable(generateTable(newN));
   };
 
   return (
     <div>
       <label>
-        Number of variables:
-        <input type="number" min="1" max="5" onChange={handleInputChange} />
+        input Dimension 
+        <input type="number" min="1" max="5" onChange={inputN} />
       </label>
       <br />
       {table}
       <br />
-      <button onClick={handleCalculate}>Calculate</button>
+      <button>Calculate</button>
     </div>
   );
 };

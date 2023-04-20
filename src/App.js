@@ -8,6 +8,7 @@ import Newton_Raphson from './unit1/Newton_Raphson'
 import Secant from './unit1/Secant'
 import CarmerRule from './unit2/CramerRule'
 import Test from './unit2/Test'
+import LinearRegression from './unit3/LinearRegression'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';;
 
@@ -24,6 +25,7 @@ function App() {
     <Route path='/Secant' element={<Secant/>}/>
     <Route path='/CarmerRule' element={<CarmerRule/>}/>
     <Route path='/Test' element={<Test/>}/>
+    <Route path='/LinearRegression' element={<LinearRegression/>}/>
   </Routes>
   </BrowserRouter>
   );

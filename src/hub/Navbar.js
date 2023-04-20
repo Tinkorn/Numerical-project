@@ -9,7 +9,7 @@ const Navbar =()=> {
     </button>
     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 
-    <div className="navbar-nav">
+    <div className="navbar-nav" >
       
         <NavDropdown title="Root of Equation" id="nav-dropdown" fontSize="30">
           <ul>
@@ -20,14 +20,18 @@ const Navbar =()=> {
           <li><NavLink to="/Newton_Raphson">Newton Raphson</NavLink></li>
           <li><NavLink to="/Secant">Secant Method</NavLink></li>
           </ul>
-          
         </NavDropdown>
 
         <NavDropdown title="Linear Algebra" id="nav-dropdown" fontSize="30">
         <ul>
         <li><NavLink to="/CarmerRule">CarmerRule</NavLink></li>
         </ul>
-        
+        </NavDropdown>
+
+        <NavDropdown title="Regression" id="nav-dropdown" fontSize="30">
+        <ul>
+        <li><NavLink to="/LinearRegression">LinearRegression</NavLink></li>
+        </ul>
         </NavDropdown>
       
       </div>
